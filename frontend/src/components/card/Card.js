@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import './Card.css';
 
@@ -15,7 +15,8 @@ class Card extends React.Component {
             <div className="card">
                 <img
                     src={imgSrc}
-                    alt="Avatar" style={{"width": "100%"}}/>
+                    alt="Avatar" width={150}
+                    height={100}/>
                 <div className="container">
                     <h4><b>{name}</b></h4>
                     <p>{subTitle}</p>
