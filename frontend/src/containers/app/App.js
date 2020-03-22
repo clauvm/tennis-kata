@@ -4,11 +4,9 @@ import {connect} from 'react-redux'
 import './App.css';
 import PlayersContainer from "../../components/players_container/PlayersContainer";
 import * as playersActions from '../../actions/players'
+import Link from "react-router-dom/Link";
 
 export class App extends Component {
-    h = (id = 0) => {
-        this.props.addPlayerForMatchActionCreator(id);
-    };
 
     render() {
         const {players} = this.props;
@@ -21,12 +19,22 @@ export class App extends Component {
                 </div>
                 <div className="list-players-content">
                     <div>
-                        <PlayersContainer title={"Players"} isMatch={false} players={players} />
+                        <PlayersContainer title={"Players"} isMatch={false} players={players}/>
                     </div>
 
                     <div>
 
-                        <PlayersContainer title={"Match"} isMatch={true} players={playersForMatch} />
+                        <PlayersContainer title={"Match"} isMatch={true} players={playersForMatch}/>
+                        {
+                            playersForMatch.length > 1 && (
+                                <div className="open-start-match">
+                                    <Link
+                                        to="/match"
+                                        className="open-start-match"
+                                    >Add a player</Link>
+                                </div>
+                            )
+                        }
 
                     </div>
                 </div>

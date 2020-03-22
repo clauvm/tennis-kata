@@ -97,6 +97,23 @@
     font-size: 0.8em;
 }
 
+.open-start-match {
+    position: absolute;
+    right: 19px;
+    bottom: 11px;
+}
+
+.open-start-match a {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-image: url('../../icons/play.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 43px;
+    font-size: 0;
+}
 
 
 
