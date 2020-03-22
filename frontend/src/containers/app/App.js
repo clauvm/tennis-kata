@@ -6,8 +6,14 @@ import PlayersContainer from "../../components/players_container/PlayersContaine
 import * as playersActions from '../../actions/players'
 
 export class App extends Component {
+    h = (id = 0) => {
+        this.props.addPlayerForMatchActionCreator(id);
+    };
+
     render() {
         const {players} = this.props;
+        const playersForMatch = players ? players.filter((player) => player.isInMatch) : [];
+
         return (
             <div className="list-players">
                 <div className="list-players-title">
@@ -15,13 +21,12 @@ export class App extends Component {
                 </div>
                 <div className="list-players-content">
                     <div>
-                        <PlayersContainer title={"Players"} isMatch={false} players={players}/>
+                        <PlayersContainer title={"Players"} isMatch={false} players={players} />
                     </div>
 
                     <div>
-                        {
-                            <PlayersContainer title={"Match"} isMatch={true} players={[]}/>
-                        }
+
+                        <PlayersContainer title={"Match"} isMatch={true} players={playersForMatch} />
 
                     </div>
                 </div>

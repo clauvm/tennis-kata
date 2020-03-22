@@ -5,17 +5,20 @@ import Card from "../card/Card";
 
 class Player extends React.Component {
     static propTypes = {
+        id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         img: PropTypes.string.isRequired,
         ranking: PropTypes.number.isRequired,
+        isInMatch: PropTypes.bool.isRequired,
+        click: PropTypes.func,
     };
 
     render() {
-        const {name, img, ranking} = this.props;
+        const {id, name, img, ranking, isInMatch} = this.props;
         return (
-            <div className="player">
+            <div onClick={() => this.props.click(id, isInMatch)} className="player">
                 <div className="player-top">
-                    <Card name={name} imgSrc={img} subTitle={"#"+ranking}/>
+                    <Card name={name} imgSrc={img} subTitle={"#" + ranking}/>
                 </div>
             </div>
         )
