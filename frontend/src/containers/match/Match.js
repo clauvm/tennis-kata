@@ -5,51 +5,73 @@ import '../app/App.css';
 import './Match.css'
 import Player from "../../components/player/Player";
 import * as matchActions from "../../actions/match";
+import {checkDeuce, playerWonGame, points} from "../../utils";
 
 export class Match extends Component {
 
-    winPoint = (playerId, order) => {
-        const {player1, player2} = this.props;
-        this.props.addSetScoreActionCreator(order);
-        this.props.handleGamePointActionCreator(order, 1);
+    /**
+     * Handles the logic when a player wins a point, if the player has not won the game yet
+     * then his or her score and increment. However, if the player has not won the game but it
+     * will win the deuce, then the opponent score will decrement (from add to 40)
+     * @param order : If it is player 1 or player 2
+     */
+    winPoint = (order) => {
+        const playerScore = this.props["player" + order];
+        const opponent = order === 1 ? 2 : 1;
+        const opponentScore = this.props["player" + opponent];
+        if (!playerWonGame(playerScore.gameScore, opponentScore.gameScore)) {
+            if (checkDeuce(playerScore.gameScore, opponentScore.gameScore)) {
+                this.props.handleGamePointActionCreator(opponent, -1);
+            } else {
+                this.props.handleGamePointActionCreator(order, 1);
+            }
+        } else {
+            console.log("Player " + order + " Won the game!!");
+            this.props.resetGameScoresActionCreator();
+            this.props.addSetScoreActionCreator(order, 1);
+        }
 
     };
 
     render() {
-        const {showPlayers} = this.props;
+        const {showPlayers, player1, player2} = this.props;
         const showPlayer1 = showPlayers[0];
         const showPlayer2 = showPlayers[1];
+        const renderPlayer = (player, score, order) => {
+            return (
+
+                <div>
+                    <Player id={player.id} name={player.name} img={player.img}
+                            ranking={player.ranking} isInMatch={player.isInMatch}/>
+
+                    <button className={"win-point-button"} onClick={() => this.winPoint(order)}>Win
+                        Point
+                    </button>
+                    <span className={"counter-game"}>{points[score]}</span>
+                </div>
+            )
+        };
+
 
         return (
             <div className="list-players">
                 <div className="list-players-title">
-                    <h1>Match!</h1>
+                    <h1 className={"title-match"}>Match!</h1>
                 </div>
                 <div className="match-container">
                     <div className="players">
-                        <div>
-                            <Player id={showPlayer1.id} name={showPlayer1.name} img={showPlayer1.img}
-                                    ranking={showPlayer1.ranking} isInMatch={showPlayer1.isInMatch}/>
+                        {
+                            renderPlayer(showPlayer1, player1.gameScore, 1)
+                        }
 
-                            <button className={"win-point-button"} onClick={() => this.winPoint(showPlayer1.id, 1)}>Win
-                                Point
-                            </button>
-                        </div>
-                        <div>
-                            <h1>VS</h1>
-                        </div>
-                        <div>
-                            <Player id={showPlayer2.id} name={showPlayer2.name} img={showPlayer2.img}
-                                    ranking={showPlayer2.ranking} isInMatch={showPlayer2.isInMatch}/>
-                            <button className={"win-point-button"} onClick={() => this.winPoint(showPlayer2.id, 2)}>Win
-                                Point
-                            </button>
-                        </div>
-
+                        <h1>VS</h1>
+                        {
+                            renderPlayer(showPlayer2, player2.gameScore, 2)
+                        }
                     </div>
 
-
                 </div>
+
 
             </div>
         )
@@ -67,5 +89,6 @@ function mapStateToProps(state) {
         player2: state.match.player2,
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Match)

@@ -13,9 +13,10 @@ export const handleGamePointActionCreator = (playerOrder, increment) => ({
     increment
 });
 
-export const addSetScoreActionCreator = (playerOrder) => ({
+export const addSetScoreActionCreator = (playerOrder, increment) => ({
     type: ADD_SET_SCORE,
-    playerOrder
+    playerOrder,
+    increment
 });
 
 export const addNewSetsActionCreator = () => ({
