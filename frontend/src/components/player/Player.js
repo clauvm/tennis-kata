@@ -14,9 +14,9 @@ class Player extends React.Component {
     };
 
     render() {
-        const {id, name, img, ranking, isInMatch} = this.props;
+        const {id, name, img, ranking, isInMatch, click} = this.props;
         return (
-            <div onClick={() => this.props.click(id, isInMatch)} className="player">
+            <div onClick={() => click ? click(id, isInMatch):null} className="player">
                 <div className="player-top">
                     <Card name={name} imgSrc={img} subTitle={"#" + ranking}/>
                 </div>

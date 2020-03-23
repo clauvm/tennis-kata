@@ -43,17 +43,21 @@ export class PlayersContainer extends React.Component {
 
     render() {
         const {isMatch, title, players} = this.props;
-        const renderPlayerGrid = (players) => <ol className="players-grid">
-            {
-                players.map((player, index) => (
-                    <li style={{opacity: player.isInMatch && !isMatch ? 0.5 : 1}} key={index}>
-                        <Player id={player.id} name={player.name} img={player.img}
-                                ranking={player.ranking} isInMatch={player.isInMatch}
-                                click={this.handleClick}/>
-                    </li>
-                ))
-            }
-        </ol>;
+        const renderPlayerGrid = (players) =>
+            <ol className="players-grid" style={{justifyContent: isMatch ? "space-evenly" : "center"}}>
+                {
+                    players.map((player, index) => (
+                        <li style={{opacity: player.isInMatch && !isMatch ? 0.5 : 1}} key={index}>
+                            <Player id={player.id} name={player.name} img={player.img}
+                                    ranking={player.ranking} isInMatch={player.isInMatch}
+                                    click={this.handleClick}/>
+
+
+                        </li>
+
+                    ))
+                }
+            </ol>;
         const renderEmptyPlayersMessage = (isMatch) => {
             const title = isMatch ? "Please select two players to start a match" : "Add players";
             return <div className="players-grid">{title}</div>
