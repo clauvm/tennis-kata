@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/tennis-kata/static/css/main.a7cdb12b.chunk.css",
+    "main.js": "/tennis-kata/static/js/main.c17fe051.chunk.js",
+    "main.js.map": "/tennis-kata/static/js/main.c17fe051.chunk.js.map",
+    "runtime-main.js": "/tennis-kata/static/js/runtime-main.54098988.js",
+    "runtime-main.js.map": "/tennis-kata/static/js/runtime-main.54098988.js.map",
+    "static/js/2.e63bab22.chunk.js": "/tennis-kata/static/js/2.e63bab22.chunk.js",
+    "static/js/2.e63bab22.chunk.js.map": "/tennis-kata/static/js/2.e63bab22.chunk.js.map",
+    "index.html": "/tennis-kata/index.html",
+    "precache-manifest.aef63fd1b561ceb89305312cb1225aa6.js": "/tennis-kata/precache-manifest.aef63fd1b561ceb89305312cb1225aa6.js",
+    "service-worker.js": "/tennis-kata/service-worker.js",
+    "static/css/main.a7cdb12b.chunk.css.map": "/tennis-kata/static/css/main.a7cdb12b.chunk.css.map",
+    "static/js/2.e63bab22.chunk.js.LICENSE.txt": "/tennis-kata/static/js/2.e63bab22.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/tennis-kata/static/media/play.53d31e52.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.54098988.js",
+    "static/js/2.e63bab22.chunk.js",
+    "static/css/main.a7cdb12b.chunk.css",
+    "static/js/main.c17fe051.chunk.js"
+  ]
+}
