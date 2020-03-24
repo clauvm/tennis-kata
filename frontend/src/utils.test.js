@@ -2,16 +2,31 @@ import {checkDeuce, playerWonGame, playerWonMatch, playerWonSet} from "./utils";
 
 describe('utils methods', () => {
     it("Checks correctly if a player won a match ", () => {
-        expect(playerWonGame(3, 0)).toBe(true)
+        expect(playerWonGame(3, 0, false)).toBe(true)
 
     });
 
     it("Checks correctly if a player did not win a match yet", () => {
-        expect(playerWonGame(2, 0)).toBe(false)
+        expect(playerWonGame(2, 0, false)).toBe(false)
     });
 
     it("Checks correctly if a player in deuce won the match", () => {
-        expect(playerWonGame(4, 3)).toBe(true)
+        expect(playerWonGame(4, 3, false)).toBe(true)
+    });
+
+    it("Checks correctly if a player won a game in tie break", () => {
+        expect(playerWonGame(7, 0, true)).toBe(true)
+    });
+
+    it("Checks correctly if a player did not win a game in tie break yet", () => {
+        expect(playerWonGame(4, 0, true)).toBe(false);
+        expect(playerWonGame(7, 6, true)).toBe(false);
+        expect(playerWonGame(6, 6, true)).toBe(false);
+    });
+
+    it("Checks correctly if a player won a tie break after opponent won more than six points", () => {
+        expect(playerWonGame(9, 7, true)).toBe(true);
+        expect(playerWonGame(15, 13, true)).toBe(true)
     });
 
     it("Checks correctly if a player has won a set", () => {

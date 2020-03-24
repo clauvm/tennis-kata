@@ -19,6 +19,8 @@ describe('Match', () => {
     it("Displays the correct title", () => {
         const props = {
             dispatch: jest.fn(),
+            resetMatch: jest.fn(),
+            addCommentatorMessageActionCreator: jest.fn(),
             player1: player1,
             player2: player2,
             showPlayers: [dummyPlayerInMatch, dummyPlayerInMatch]
@@ -31,6 +33,8 @@ describe('Match', () => {
     it("Displays two players", () => {
         const props = {
             dispatch: jest.fn(),
+            resetMatch: jest.fn(),
+            addCommentatorMessageActionCreator: jest.fn(),
             player1: player1,
             player2: player2,
             showPlayers: [dummyPlayerInMatch, dummyPlayerInMatch]
@@ -43,14 +47,16 @@ describe('Match', () => {
     it("Displays player counters in love at beginning of match", () => {
         const props = {
             dispatch: jest.fn(),
+            resetMatch: jest.fn(),
+            addCommentatorMessageActionCreator: jest.fn(),
             player1: player1,
             player2: player2,
             showPlayers: [dummyPlayerInMatch, dummyPlayerInMatch]
         };
         const wrapper = mount(<Match {...props}/>);
-        console.log('shallow html: ', wrapper.debug()); // Mount wrappers can go all the way down
+        // console.log('shallow html: ', wrapper.debug()); // Mount wrappers can go all the way down
         const counters = wrapper.find("th.counter-game");
-        console.log(counters.first().text());
+        // console.log(counters.first().text());
         expect(counters.at(0).text()).toEqual("0");
         expect(counters.at(1).text()).toEqual("0");
     });
@@ -58,6 +64,8 @@ describe('Match', () => {
     it("Calls correct function and action creator when a player wins a point", () => {
         const props = {
             handleGamePointActionCreator: jest.fn(),
+            resetMatch: jest.fn(),
+            addCommentatorMessageActionCreator: jest.fn(),
             player1: player1,
             player2: player2,
             showPlayers: [dummyPlayerInMatch, dummyPlayerInMatch]

@@ -49,14 +49,48 @@ export const checkTieBreak = (p1SetScore, p2SetScore) => {
  * Check if a player has won a game, this happens when the player reaches 40 points or wins a deuce
  * @param p1GameScore
  * @param p2GameScore
+ * @param isPlayerInTieBreak
  * @returns {boolean}
  */
-export const playerWonGame = (p1GameScore, p2GameScore) => {
+export const playerWonGame = (p1GameScore, p2GameScore, isPlayerInTieBreak) => {
+    let result = false;
+    if (!isPlayerInTieBreak) {
+        result = conditionNormalGame(p1GameScore, p2GameScore)
+    } else {
+        result = conditionTieBreak(p1GameScore, p2GameScore)
+    }
+    return result
+};
+
+
+/**
+ * Condition to win a normal game
+ * @param p1GameScore
+ * @param p2GameScore
+ * @returns {boolean}
+ */
+export const conditionNormalGame = (p1GameScore, p2GameScore) => {
     let result = false;
     if (p1GameScore === 3 && p2GameScore < 3) {
         result = true
     } else if (checkDeuce(p2GameScore, p1GameScore)) {
         result = true
+    }
+    return result
+};
+
+/**
+ * Condition to win a tie break
+ * @param p1GameScore
+ * @param p2GameScore
+ * @returns {boolean}
+ */
+export const conditionTieBreak = (p1GameScore, p2GameScore) => {
+    let result = false;
+    if (p1GameScore === 7 && p2GameScore < 5) {
+        result = true
+    } else if (p1GameScore >= 6 && p2GameScore >= 6) {
+        result = p1GameScore - p2GameScore === 2
     }
     return result
 };
@@ -87,7 +121,12 @@ export const playerWonMatch = (p1SetsWon, p2SetsWon, maxSets) => {
     if (maxSets === 3) {
         response = ((p1SetsWon === 2 && p2SetsWon === 0) || (p1SetsWon === 2 && p2SetsWon === 1))
     } else if (maxSets === 5) {
+        console.log("Condition sets 5");
+        console.log(p1SetsWon)
+        console.log(p2SetsWon)
+
         response = ((p1SetsWon === 3 && p2SetsWon === 0) || (p1SetsWon === 4 && p2SetsWon === 1) || (p1SetsWon === 3 && p2SetsWon === 2))
+        console.log(response)
     }
     return response
 };

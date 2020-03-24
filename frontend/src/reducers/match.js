@@ -4,7 +4,7 @@ import {
     ADD_SET_SCORE, CHANGE_GAME_MODE,
     END_MATCH,
     HANDLE_GAME_POINT,
-    RESET_GAME_SCORES
+    RESET_GAME_SCORES, RESET_MATCH
 } from "../actions/match";
 import {PLAYER1, PLAYER2, points} from "../utils";
 
@@ -75,7 +75,10 @@ export function match(state = initialState, action) {
                 copy.maxSetNumber = 3
             }
             return copy;
-
+        case RESET_MATCH:
+            copy = JSON.parse(JSON.stringify(initialState));
+            copy.maxSetNumber = state.maxSetNumber;
+            return copy;
 
         default:
             return state;

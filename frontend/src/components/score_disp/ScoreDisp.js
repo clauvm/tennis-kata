@@ -17,7 +17,7 @@ class ScoreDisp extends React.Component {
                         <th style={{width: "200px"}}>{name}</th>
                         {
                             sets.map((set, index) => (
-                                <th id={index} style={{width: "30px"}}>{set}</th>
+                                <th key={index} style={{width: "30px"}}>{set}</th>
                             ))
                         }
                         <th className={"counter-game"} style={{width: "30px",border:"1px solid black"}}>{gameScore}</th>

@@ -5,6 +5,7 @@ export const ADD_NEW_SETS = 'ADD_NEW_SET';
 export const END_MATCH = 'END_MATCH';
 export const ADD_COMMENTATOR_MESSAGE = 'ADD_COMMENTATOR_MESSAGE';
 export const CHANGE_GAME_MODE = 'CHANGE_GAME_MODE';
+export const RESET_MATCH = 'RESET_MATCH';
 
 export const resetGameScoresActionCreator = () => ({
     type: RESET_GAME_SCORES,
@@ -37,4 +38,8 @@ export const addCommentatorMessageActionCreator = (message) => ({
 
 export const changeGameMode = () => ({
     type: CHANGE_GAME_MODE
+});
+
+export const resetMatch = () => ({
+    type: RESET_MATCH
 });
