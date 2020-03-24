@@ -1,0 +1,120 @@
+.App {
+    text-align: center;
+}
+
+/* main page */
+
+.list-players-title {
+    padding: 10px 0;
+    background: #2e7c31;
+    text-align: center;
+}
+
+.list-players-title h1 {
+    font-weight: 400;
+    margin: 0;
+    color: white;
+}
+
+.list-players-content {
+    padding: 0 0 80px;
+    flex: 1;
+}
+
+.players-container {
+  padding: 0 10px 20px;
+}
+
+@media (min-width: 600px) {
+  .players-container {
+    padding: 0 20px 20px;
+  }
+}
+
+.players-container-title {
+    border-bottom: 1px solid #dedede;
+}
+
+/* players grid */
+
+.players-grid {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.players-grid li {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.player {
+    width: 151px;
+}
+
+
+.player-top {
+    position: relative;
+    height: 200px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.players-container-changer {
+    position: absolute;
+    right: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #60ac5d;
+    /*background-image: url('./icons/arrow-drop-down.svg');*/
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.players-container-changer select {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.player-cover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    background: #eee;
+}
+
+.player-cover-title {
+    padding: 20px 10px 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.open-start-match {
+    position: absolute;
+    right: 19px;
+    bottom: 11px;
+}
+
+.open-start-match a {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-image: url('../../icons/play.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 43px;
+    font-size: 0;
+}
+
+
+
+
