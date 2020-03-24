@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {shallow} from 'enzyme'
+import {shallow, mount} from 'enzyme'
 import {Match} from "./Match";
 import {dummyPlayerInMatch} from "../../utils";
 
@@ -47,9 +47,9 @@ describe('Match', () => {
             player2: player2,
             showPlayers: [dummyPlayerInMatch, dummyPlayerInMatch]
         };
-        const wrapper = shallow(<Match {...props}/>);
+        const wrapper = mount(<Match {...props}/>);
         console.log('shallow html: ', wrapper.debug()); // Mount wrappers can go all the way down
-        const counters = wrapper.find("span.counter-game");
+        const counters = wrapper.find("th.counter-game");
         console.log(counters.first().text());
         expect(counters.at(0).text()).toEqual("0");
         expect(counters.at(1).text()).toEqual("0");

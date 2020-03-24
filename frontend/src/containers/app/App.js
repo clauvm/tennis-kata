@@ -31,7 +31,7 @@ export class App extends Component {
                                     <Link
                                         to="/match"
                                         className="open-start-match"
-                                    >Add a player</Link>
+                                    >Start Match</Link>
                                 </div>
                             )
                         }

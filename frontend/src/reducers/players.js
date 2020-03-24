@@ -14,7 +14,7 @@ const initialState = {
             height: 184,
             country: "Switzerland",
             img: "https://www.tennisworldusa.org/imgb/89749/is-wimbledon-2020-the-last-slamchance-for-roger-federer.jpg",
-            isInMatch: true
+            isInMatch: false
         },
         {
             id: 2,
@@ -24,7 +24,7 @@ const initialState = {
             height: 186,
             country: "Spain",
             img: "https://img.bleacherreport.net/img/images/photos/003/826/651/hi-res-7feb9feca6ff85280c5faebebb9ed3dc_crop_north.jpg?h=533&w=800&q=70&crop_x=center&crop_y=top",
-            isInMatch: true
+            isInMatch: false
         },
         {
             id: 3,

@@ -18,7 +18,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sort-by": "^1.2.0",
-    "form-serialize": "^0.7.2"
+    "form-serialize": "^0.7.2",
+    "react-icons": "^2.2.5"
   },
   "scripts": {
     "start": "react-scripts start",

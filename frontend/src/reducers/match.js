@@ -1,8 +1,18 @@
-import {ADD_NEW_SETS, ADD_SET_SCORE, HANDLE_GAME_POINT, RESET_GAME_SCORES} from "../actions/match";
+import {
+    ADD_COMMENTATOR_MESSAGE,
+    ADD_NEW_SETS,
+    ADD_SET_SCORE, CHANGE_GAME_MODE,
+    END_MATCH,
+    HANDLE_GAME_POINT,
+    RESET_GAME_SCORES
+} from "../actions/match";
 import {PLAYER1, PLAYER2, points} from "../utils";
 
 
 const initialState = {
+    isMatchOver: false,
+    maxSetNumber: 3,
+    commentatorMessage: "The Match starts!!!",
     player1: {
         id: 0,
         gameScore: 0,
@@ -23,7 +33,7 @@ const initialState = {
  */
 export function match(state = initialState, action) {
     let copy = {};
-    const {playerOrder, increment} = action;
+    const {playerOrder, increment, message} = action;
     const player = "player" + playerOrder;
     switch (action.type) {
 
@@ -38,7 +48,6 @@ export function match(state = initialState, action) {
             return copy;
 
         case ADD_SET_SCORE:
-
             copy = JSON.parse(JSON.stringify(state));
             const length = copy[player].setScore.length;
             copy[player].setScore[length - 1] += increment;
@@ -49,6 +58,24 @@ export function match(state = initialState, action) {
             copy[PLAYER1].setScore.push(0);
             copy[PLAYER2].setScore.push(0);
             return copy;
+
+        case END_MATCH:
+            copy = {...state};
+            copy.isMatchOver = true;
+            return copy;
+
+        case ADD_COMMENTATOR_MESSAGE:
+            return {...state, commentatorMessage: message};
+
+        case CHANGE_GAME_MODE:
+            copy = {...state};
+            if (copy.maxSetNumber === 3) {
+                copy.maxSetNumber = 5
+            } else if (copy.maxSetNumber === 5) {
+                copy.maxSetNumber = 3
+            }
+            return copy;
+
 
         default:
             return state;
