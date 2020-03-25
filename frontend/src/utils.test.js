@@ -1,4 +1,4 @@
-import {checkDeuce, playerWonGame, playerWonMatch, playerWonSet} from "./utils";
+import {checkDeuce, getPlayersWonSets, playerWonGame, playerWonMatch, playerWonSet} from "./utils";
 
 describe('utils methods', () => {
     it("Checks correctly if a player won a match ", () => {
@@ -54,6 +54,12 @@ describe('utils methods', () => {
         expect(playerWonMatch(3, 0, 5)).toBe(true);
         expect(playerWonMatch(4, 1, 5)).toBe(true);
         expect(playerWonMatch(3, 2, 5)).toBe(true);
+    });
+
+    it("Gets correct number of won sets by player", () => {
+        expect(getPlayersWonSets([6,5], [2,3], 2).setsWonP1).toEqual(2);
+        expect(getPlayersWonSets([0,6,5], [6,4,3], 3).setsWonP1).toEqual(2);
+        expect(getPlayersWonSets([7,6,6], [6,7,6], 3).setsWonP1).toEqual(2);
     });
 
 });

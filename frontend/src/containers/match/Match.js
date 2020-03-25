@@ -8,7 +8,7 @@ import * as matchActions from "../../actions/match";
 import {
     checkDeuce,
     checkTieBreak,
-    getMessage,
+    getMessage, getPlayersWonSets,
     playerWonGame,
     playerWonMatch,
     playerWonSet,
@@ -51,24 +51,6 @@ export class Match extends Component {
     };
 
     /**
-     * Gets number of sets won by each player taking into account sets won by tie break
-     * @param p1SetScores
-     * @param p2SetScores
-     * @param currentSet
-     * @returns {{swp2: *, swp1: *}}
-     */
-    getPlayersWonSets = (p1SetScores, p2SetScores, currentSet) => {
-        // swp1 = sets won by player 1
-        // swp2 = sets won by player 2
-        const setsWonP1 = p1SetScores.filter((set, index) => {
-            const setScore = index === (currentSet - 1) ? set + 1 : set;
-            return setScore >= 6 && p2SetScores[index] !== 7
-        }).length;
-        const setsWonP2 = p2SetScores.filter((set, index) => set >= 6 && p1SetScores[index] !== 7).length;
-        return {setsWonP1, setsWonP2}
-    };
-
-    /**
      * Handles the logic when a player wins a point, if the player has not won the game yet
      * then his or her score and increment. However, if the player has not won the game but it
      * will win the deuce, then the opponent score will decrement (from add to 40)
@@ -96,7 +78,7 @@ export class Match extends Component {
                 } else { // Player won set
                     message = playerName + " # Won the set " + currentSet + "";
                     this.props.addCommentatorMessageActionCreator(message);
-                    const {setsWonP1, setsWonP2} = this.getPlayersWonSets(playerScore.setScore, opponentScore.setScore, currentSet);
+                    const {setsWonP1, setsWonP2} = getPlayersWonSets(playerScore.setScore, opponentScore.setScore, currentSet);
                     if (!playerWonMatch(setsWonP1, setsWonP2, maxSetNumber)) { // Check if player won match
                         this.props.addSetScoreActionCreator(order, 1);
                         this.props.addNewSetsActionCreator();
@@ -124,7 +106,7 @@ export class Match extends Component {
         const showPlayer2 = showPlayers[1] || {};
         const currentSet = player1.setScore.length;
         const isPlayerInTieBreak = checkTieBreak(player1.setScore[currentSet - 1], player2.setScore[currentSet - 1]);
-        const {setsWonP1, setsWonP2} = this.getPlayersWonSets(player1.setScore, player2.setScore, currentSet);
+        const {setsWonP1, setsWonP2} = getPlayersWonSets(player1.setScore, player2.setScore, currentSet);
 
         const renderPlayer = (player, hasWon, order, isMatchOver) => {
             return (

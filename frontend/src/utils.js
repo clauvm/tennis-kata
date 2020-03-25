@@ -121,10 +121,6 @@ export const playerWonMatch = (p1SetsWon, p2SetsWon, maxSets) => {
     if (maxSets === 3) {
         response = ((p1SetsWon === 2 && p2SetsWon === 0) || (p1SetsWon === 2 && p2SetsWon === 1))
     } else if (maxSets === 5) {
-        console.log("Condition sets 5");
-        console.log(p1SetsWon)
-        console.log(p2SetsWon)
-
         response = ((p1SetsWon === 3 && p2SetsWon === 0) || (p1SetsWon === 4 && p2SetsWon === 1) || (p1SetsWon === 3 && p2SetsWon === 2))
         console.log(response)
     }
@@ -143,4 +139,23 @@ export const getMessage = (name) => {
     const message4 = "" + name + "'s backhand is remarkable!";
     const messages = [message1, message2, message3, message4];
     return messages[Math.floor(Math.random() * messages.length)]
+};
+
+/**
+ * Gets number of sets won by each player taking into account sets won by tie break
+ * @param p1SetScores
+ * @param p2SetScores
+ * @param currentSet
+ * @returns {{swp2: *, swp1: *}}
+ */
+export const getPlayersWonSets = (p1SetScores, p2SetScores, currentSet) => {
+    const setsWonP1 = p1SetScores.filter((set, index) => {
+        const setScore = index === (currentSet - 1) ? set + 1 : set;
+        return setScore >= 6 && p2SetScores[index] !== 7
+    }).length;
+    const setsWonP2 = p2SetScores.filter((set, index) => {
+        const oppSetScore = index === (currentSet - 1) ? p2SetScores[index] + 1 : p2SetScores[index];
+        return set >= 6 && oppSetScore !== 7
+    }).length;
+    return {setsWonP1, setsWonP2}
 };
