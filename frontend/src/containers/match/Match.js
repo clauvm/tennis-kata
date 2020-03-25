@@ -106,7 +106,7 @@ export class Match extends Component {
         const showPlayer2 = showPlayers[1] || {};
         const currentSet = player1.setScore.length;
         const isPlayerInTieBreak = checkTieBreak(player1.setScore[currentSet - 1], player2.setScore[currentSet - 1]);
-        const {setsWonP1, setsWonP2} = getPlayersWonSets(player1.setScore, player2.setScore, currentSet);
+        const {setsWonP1, setsWonP2} = getPlayersWonSets(player1.setScore, player2.setScore, currentSet+1);
 
         const renderPlayer = (player, hasWon, order, isMatchOver) => {
             return (
