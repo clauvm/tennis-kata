@@ -31,9 +31,29 @@ const initialState = {
             name: "Novak Djokovic",
             ranking: 3,
             weight: 78,
-            height: 110,
+            height: 179,
             country: "Serbia",
             img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Paris-FR-75-open_de_tennis-31-5-17-Roland_Garros-Novak_Djokovic-13.jpg/1024px-Paris-FR-75-open_de_tennis-31-5-17-Roland_Garros-Novak_Djokovic-13.jpg",
+            isInMatch: false
+        },
+        {
+            id: 4,
+            name: "Andy Murray",
+            ranking: 4,
+            weight: 75,
+            height: 167,
+            country: "Scotland",
+            img: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Andy_Murray_%2844087043305%29.jpg/440px-Andy_Murray_%2844087043305%29.jpg",
+            isInMatch: false
+        },
+        {
+            id: 5,
+            name: "John Isner",
+            ranking: 5,
+            weight: 85,
+            height: 190,
+            country: "US",
+            img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Isner_US16_%2821%29_%2829862971805%29.jpg/490px-Isner_US16_%2821%29_%2829862971805%29.jpg",
             isInMatch: false
         }
     ]
